@@ -1,0 +1,39 @@
+name: CTRLxT_STUDIOS Omni-Kernel-Prime Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential linux-headers-$(uname -r) git
+
+    - name: Build Kernel Module
+      run: |
+        cd kernel
+        make
+
+    - name: Run Tests
+      run: |
+        cd kernel
+        make test
+
+    - name: Check Code Style
+      run: |
+        cd kernel
+        make checkpatch
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: kernel-module
+        path: kernel/*.ko

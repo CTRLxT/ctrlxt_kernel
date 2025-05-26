@@ -1,0 +1,81 @@
+# Kernel build artifacts
+*.o
+*.ko
+*.mod.c
+*.mod
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# Kernel build files
+*.d
+*.dwo
+*.o.cmd
+*.o.d
+*.o.dwo
+*.o.ur-safe
+*.o.ur-safe.cmd
+*.o.ur-safe.d
+*.o.ur-safe.dwo
+*.o.ur-safe.ur-safe
+*.o.ur-safe.ur-safe.cmd
+*.o.ur-safe.ur-safe.d
+*.o.ur-safe.ur-safe.dwo
+*.o.ur-safe.ur-safe.ur-safe
+*.o.ur-safe.ur-safe.ur-safe.cmd
+*.o.ur-safe.ur-safe.ur-safe.d
+*.o.ur-safe.ur-safe.ur-safe.dwo
+*.o.ur-safe.ur-safe.ur-safe.ur-safe
+*.o.ur-safe.ur-safe.ur-safe.ur-safe.cmd
+*.o.ur-safe.ur-safe.ur-safe.ur-safe.d
+*.o.ur-safe.ur-safe.ur-safe.ur-safe.dwo
+*.o.ur-safe.ur-safe.ur-safe.ur-safe.ur-safe
+*.o.ur-safe.ur-safe.ur-safe.ur-safe.ur-safe.cmd
+*.o.ur-safe.ur-safe.ur-safe.ur-safe.ur-safe.d
+*.o.ur-safe.ur-safe.ur-safe.ur-safe.ur-safe.dwo
+
+# Generated files
+*.d
+*.dts
+*.dtsi
+*.dtb
+*.dtbo
+
+# Build directories
+build/
+dist/
+debian/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*~
+
+# Debug files
+*.log
+*.debug
+*.debuginfo
+
+# Documentation builds
+doc/_build/
+doc/_static/
+doc/_templates/
+
+# Test coverage
+coverage/
+.coverage
+htmlcov/
+
+# Distribution files
+*.tar.gz
+*.tar.xz
+*.deb
+*.rpm
+
+# System files
+.DS_Store
+Thumbs.db
