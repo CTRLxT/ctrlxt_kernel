@@ -2,6 +2,8 @@
 
 obj-m += ctrlxt_kernel.o
 obj-m += ctrlxt_kernel_test.o
+obj-m += ctrlxt_security_perf_test.o
+obj-m += ctrlxt_perf_benchmark_test.o
 
 ctrlxt_kernel-objs := init/main.o \
                       quantum/quantum.o \
@@ -13,11 +15,15 @@ ctrlxt_kernel-objs := init/main.o \
                       mm/memory.o \
                       fs/ctrlxt_fs.o \
                       net/ctrlxt_net.o \
+                      security/security.o \
+                      performance/performance.o \
                       arch/x86/arch.o \
                       arch/arm/arch.o \
                       arch/riscv/arch.o
 
 ctrlxt_kernel_test-objs := tests/test_kernel.o
+ctrlxt_security_perf_test-objs := tests/test_security_perf.o
+ctrlxt_perf_benchmark_test-objs := tests/test_perf_benchmark.o
 
 # Architecture-specific configuration
 ifeq ($(ARCH),x86)
@@ -31,6 +37,9 @@ endif
 ifeq ($(ARCH),riscv)
     ctrlxt_kernel-objs += arch/riscv/arch.o
 endif
+
+# Compiler flags
+ccflags-y := -I$(src)/include -DDEBUG -DCONFIG_QUANTUM_DEBUG
 
 KERNELDIR ?= /lib/modules/$(shell uname -r)/build
 PWD := $(shell pwd)
@@ -48,6 +57,10 @@ test:
 	@echo "Running kernel module tests..."
 	@sudo insmod ctrlxt_kernel.ko
 	@sudo insmod ctrlxt_kernel_test.ko
+	@sudo insmod ctrlxt_security_perf_test.ko
+	@sudo insmod ctrlxt_perf_benchmark_test.ko
+	@sudo rmmod ctrlxt_perf_benchmark_test
+	@sudo rmmod ctrlxt_security_perf_test
 	@sudo rmmod ctrlxt_kernel_test
 	@sudo rmmod ctrlxt_kernel
 	@dmesg | grep "CTRLxT_STUDIOS"
